@@ -73,5 +73,5 @@
 ---
 <div align="center">
   <b>Desarrollado por:</b> Samuel Elí Villanueva Chávez <br>
-  <i>Tecnología, Informática y Telecomunicaciones (UNDAC) | DaraStudio</i>
+  <i>Tecnología, Informática y Telecomunicaciones (UNDAC) | Sam
 </div>
