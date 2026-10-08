@@ -32,20 +32,26 @@
 
 ## 📋 Lista de Materiales Detallada
 
-### ⚙️ Electrónica Principal
-* **1x** Placa de desarrollo ESP32 (WROOM-32, 30 o 38 pines).
-* **1x** Módulo Driver de motor L298N Mini (MX1508).
-* **2x** Motores DC con motorreductor (Tipo TT 200RPM 6V)[cite: 16].
-* **1x** Regulador de voltaje L7805CV *(Para reducir los 9V a 5V limpios para el ESP32)*.
-* **1x** Interruptor (Switch) de encendido/apagado.
+## 📋 Lista de Materiales Detallada
 
-### 🔋 Alimentación y Mecánica
-* **1x** Batería cuadrada de 9V *(Alternativa: 2x Baterías Li-ion 18650 con portapilas para mayor autonomía y amperaje)*.
-* **1x** Conector/Broche para batería de 9V.
-* **2x** Ruedas de tracción (Una para cada lado, acopladas a los motorreductores).
-* **1x** Rueda loca omnidireccional *(Solo si el chasis elegido lo requiere)*.
-* Cables jumper (Macho-Macho y Macho-Hembra).
-* **Estructura/Chasis libre:** El diseño físico es totalmente adaptable al gusto del creador. Puedes usar un chasis de acrílico comercial, imprimir una estructura en 3D, adaptar el circuito dentro de un carro de juguete existente, o incluso construir una réplica tipo WALL-E. ¡Depende de lo que desees realizar!
+### 🧠 Lógica y Control
+- 🎛️ **1x** Placa de desarrollo ESP32 (WROOM-32, 30 o 38 pines).
+- 🕹️ **1x** Módulo Driver de motor L298N Mini (MX1508).
+
+### ⚡ Sistema de Alimentación
+- 🔋 **1x** Batería cuadrada de 9V *(Alternativa: 2x Baterías Li-ion 18650 con portapilas para mayor autonomía y amperaje)*.
+- 🔌 **1x** Conector/Broche para batería de 9V.
+- 📉 **1x** Regulador de voltaje L7805CV *(Para reducir los 9V a 5V limpios para el ESP32)*.
+- 🔘 **1x** Interruptor (Switch) de encendido/apagado.
+
+### ⚙️ Mecánica y Movimiento
+- 🏎️ **2x** Motores DC con motorreductor (Tipo TT 200RPM 6V).
+- 🛞 **2x** Ruedas de tracción (Una para cada lado, acopladas a los motorreductores).
+- 🛹 **1x** Rueda loca omnidireccional o rueda libre pasiva *(Actúa como tercer punto de apoyo para mantener el equilibrio del chasis, distribuir el peso y evitar que el robot vuelque hacia adelante o hacia atrás)*.
+
+### 🛠️ Estructura y Cableado
+- 🔗 **Varios** Cables jumper (Macho-Macho y Macho-Hembra).
+- 🏗️ **Estructura/Chasis libre:** El diseño físico es totalmente adaptable al gusto del creador. Puedes usar un chasis de acrílico comercial, imprimir una estructura en 3D, adaptar el circuito dentro de un carro de juguete existente, o incluso construir una réplica tipo WALL-E. ¡Depende de lo que desees realizar!
 
 ## 🔌 Esquema de Conexiones (Pinout)
 
