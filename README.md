@@ -28,24 +28,24 @@
 * **Interfaz UI/UX Embebida:** Tablero web almacenado directamente en la memoria PROGMEM del microcontrolador, sin necesidad de tarjetas SD ni servidores externos.
 * **Protección Táctil iOS:** Reglas CSS estrictas (`user-select: none;`, `-webkit-touch-callout: none;`) para evitar menús contextuales o selección de texto al mantener presionados los controles de dirección.
 * **Conexión Directa M2M:** El ESP32 se enlaza directamente al "Punto de Acceso Personal" del teléfono móvil, eliminando la latencia y la necesidad de routers intermedios.
-* **Diseño Adaptable:** El sistema electrónico está pensado para integrarse en cualquier tipo de carcasa o juguete, permitiendo total libertad creativa en la construcción física.
+* **Diseño Libre y Adaptable:** La electrónica es universal. El código y el circuito pueden integrarse en cualquier estructura según la creatividad del usuario.
 
 ## 📋 Lista de Materiales Detallada
 
 ### ⚙️ Electrónica Principal
 * **1x** Placa de desarrollo ESP32 (WROOM-32, 30 o 38 pines).
 * **1x** Módulo Driver de motor L298N Mini (MX1508).
-* **2x** Motores DC Motorreductor 200RPM 6V (Tipo TT amarillo, uno para cada lado de tracción).
+* **2x** Motores DC con motorreductor (Tipo TT 200RPM 6V)[cite: 16].
 * **1x** Regulador de voltaje L7805CV *(Para reducir los 9V a 5V limpios para el ESP32)*.
-* **1x** Interruptor (Switch) basculante o deslizante para el encendido/apagado general.
+* **1x** Interruptor (Switch) de encendido/apagado.
 
-### 🔋 Alimentación y Estructura (Personalizable)
+### 🔋 Alimentación y Mecánica
 * **1x** Batería cuadrada de 9V *(Alternativa: 2x Baterías Li-ion 18650 con portapilas para mayor autonomía y amperaje)*.
 * **1x** Conector/Broche para batería de 9V.
-* **2x** Ruedas compatibles con el eje de los motores TT.
-* **1x** Rueda loca omnidireccional (si el diseño lo requiere).
+* **2x** Ruedas de tracción (Una para cada lado, acopladas a los motorreductores).
+* **1x** Rueda loca omnidireccional *(Solo si el chasis elegido lo requiere)*.
 * Cables jumper (Macho-Macho y Macho-Hembra).
-* **Estructura Libre:** El chasis es a gusto personal. Puedes utilizar placas de acrílico, reciclar la carcasa de un carro a control remoto, diseñar piezas en impresión 3D, o incluso armar una réplica de WALL-E. ¡Depende totalmente de lo que desees realizar!
+* **Estructura/Chasis libre:** El diseño físico es totalmente adaptable al gusto del creador. Puedes usar un chasis de acrílico comercial, imprimir una estructura en 3D, adaptar el circuito dentro de un carro de juguete existente, o incluso construir una réplica tipo WALL-E. ¡Depende de lo que desees realizar!
 
 ## 🔌 Esquema de Conexiones (Pinout)
 
@@ -53,25 +53,24 @@
 
 | Componente | Terminal | Conexión en ESP32 / Sistema |
 | :--- | :--- | :--- |
+| **Interruptor** | `Pines` | Intercalado en el cable positivo `(+)` entre la batería y todo el sistema |
 | **L298N Mini** | `IN1` | `GPIO 16` |
 | **L298N Mini** | `IN2` | `GPIO 17` |
 | **L298N Mini** | `IN3` | `GPIO 18` |
 | **L298N Mini** | `IN4` | `GPIO 19` |
-| **L298N Mini** | `VCC (+)` | Batería 9V `(+)` (Después del Interruptor) |
+| **L298N Mini** | `VCC (+)` | Batería 9V `(+)` *(Después del interruptor)* |
 | **L298N Mini** | `GND (-)` | Batería 9V `(-)` **Y** `GND` del ESP32 |
-| **L298N Mini** | `Motor A` | Motorreductor TT Derecho |
-| **L298N Mini** | `Motor B` | Motorreductor TT Izquierdo |
-| **Regulador 7805**| `Pin 1 (IN)` | Batería 9V `(+)` (Después del Interruptor) |
+| **L298N Mini** | `Motor A` | Motor Derecho |
+| **L298N Mini** | `Motor B` | Motor Izquierdo |
+| **Regulador 7805**| `Pin 1 (IN)` | Batería 9V `(+)` *(Después del interruptor)* |
 | **Regulador 7805**| `Pin 2 (GND)` | `GND` Común *(Unido a toda la tierra del sistema)* |
 | **Regulador 7805**| `Pin 3 (OUT)`| Pin `VIN` o `5V` (ESP32) |
-| **Interruptor** | `Pin 1` | Positivo de la Batería 9V |
-| **Interruptor** | `Pin 2` | Hacia Regulador (IN) y L298N (VCC) |
 
 ## 🚀 Instalación y Uso
 
 1. **Carga del Código:** Abre el archivo `walle_sam_web.ino` en el Arduino IDE y sube el firmware al ESP32. Asegúrate de configurar la velocidad del Monitor Serie a `115200` baudios.
 2. **Red Móvil:** En tu celular, activa *Compartir internet* (Punto de acceso). Configura previamente el SSID como `iPhone` y la contraseña como `villanueva`.
-3. **Sincronización de Hardware:** Enciende el robot desde el switch principal. El LED azul interno de la placa (`GPIO 2`) parpadeará mientras establece el enlace de red y se quedará fijo al conectarse con éxito.
+3. **Sincronización de Hardware:** Enciende el robot desde el interruptor general. El LED azul interno de la placa (`GPIO 2`) parpadeará mientras establece el enlace de red y se quedará fijo al conectarse con éxito.
 4. **Despliegue de Control:** Si usas iOS, abre el navegador Safari e ingresa a la IP asignada (usualmente `172.20.10.2` o `172.20.10.3`) para acceder al tablero de control industrial.
 
 <br>
