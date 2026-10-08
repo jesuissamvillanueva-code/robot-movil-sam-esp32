@@ -28,20 +28,24 @@
 * **Interfaz UI/UX Embebida:** Tablero web almacenado directamente en la memoria PROGMEM del microcontrolador, sin necesidad de tarjetas SD ni servidores externos.
 * **Protección Táctil iOS:** Reglas CSS estrictas (`user-select: none;`, `-webkit-touch-callout: none;`) para evitar menús contextuales o selección de texto al mantener presionados los controles de dirección.
 * **Conexión Directa M2M:** El ESP32 se enlaza directamente al "Punto de Acceso Personal" del teléfono móvil, eliminando la latencia y la necesidad de routers intermedios.
+* **Diseño Adaptable:** El sistema electrónico está pensado para integrarse en cualquier tipo de carcasa o juguete, permitiendo total libertad creativa en la construcción física.
 
 ## 📋 Lista de Materiales Detallada
 
 ### ⚙️ Electrónica Principal
 * **1x** Placa de desarrollo ESP32 (WROOM-32, 30 o 38 pines).
 * **1x** Módulo Driver de motor L298N Mini (MX1508).
-* **2x** Motores DC con motorreductor (Tipo TT 3V - 6V).
+* **2x** Motores DC Motorreductor 200RPM 6V (Tipo TT amarillo, uno para cada lado de tracción).
 * **1x** Regulador de voltaje L7805CV *(Para reducir los 9V a 5V limpios para el ESP32)*.
+* **1x** Interruptor (Switch) basculante o deslizante para el encendido/apagado general.
 
-### 🔋 Alimentación y Chasis
+### 🔋 Alimentación y Estructura (Personalizable)
 * **1x** Batería cuadrada de 9V *(Alternativa: 2x Baterías Li-ion 18650 con portapilas para mayor autonomía y amperaje)*.
 * **1x** Conector/Broche para batería de 9V.
-* **1x** Chasis de robot móvil (Acrílico o impreso en 3D) con 2 ruedas de tracción y 1 rueda loca.
+* **2x** Ruedas compatibles con el eje de los motores TT.
+* **1x** Rueda loca omnidireccional (si el diseño lo requiere).
 * Cables jumper (Macho-Macho y Macho-Hembra).
+* **Estructura Libre:** El chasis es a gusto personal. Puedes utilizar placas de acrílico, reciclar la carcasa de un carro a control remoto, diseñar piezas en impresión 3D, o incluso armar una réplica de WALL-E. ¡Depende totalmente de lo que desees realizar!
 
 ## 🔌 Esquema de Conexiones (Pinout)
 
@@ -53,19 +57,21 @@
 | **L298N Mini** | `IN2` | `GPIO 17` |
 | **L298N Mini** | `IN3` | `GPIO 18` |
 | **L298N Mini** | `IN4` | `GPIO 19` |
-| **L298N Mini** | `VCC (+)` | Batería 9V `(+)` |
+| **L298N Mini** | `VCC (+)` | Batería 9V `(+)` (Después del Interruptor) |
 | **L298N Mini** | `GND (-)` | Batería 9V `(-)` **Y** `GND` del ESP32 |
-| **L298N Mini** | `Motor A` | Motor Derecho |
-| **L298N Mini** | `Motor B` | Motor Izquierdo |
-| **Regulador 7805**| `Pin 1 (IN)` | Batería 9V `(+)` |
+| **L298N Mini** | `Motor A` | Motorreductor TT Derecho |
+| **L298N Mini** | `Motor B` | Motorreductor TT Izquierdo |
+| **Regulador 7805**| `Pin 1 (IN)` | Batería 9V `(+)` (Después del Interruptor) |
 | **Regulador 7805**| `Pin 2 (GND)` | `GND` Común *(Unido a toda la tierra del sistema)* |
 | **Regulador 7805**| `Pin 3 (OUT)`| Pin `VIN` o `5V` (ESP32) |
+| **Interruptor** | `Pin 1` | Positivo de la Batería 9V |
+| **Interruptor** | `Pin 2` | Hacia Regulador (IN) y L298N (VCC) |
 
 ## 🚀 Instalación y Uso
 
 1. **Carga del Código:** Abre el archivo `walle_sam_web.ino` en el Arduino IDE y sube el firmware al ESP32. Asegúrate de configurar la velocidad del Monitor Serie a `115200` baudios.
 2. **Red Móvil:** En tu celular, activa *Compartir internet* (Punto de acceso). Configura previamente el SSID como `iPhone` y la contraseña como `villanueva`.
-3. **Sincronización de Hardware:** Enciende el robot. El LED azul interno de la placa (`GPIO 2`) parpadeará mientras establece el enlace de red y se quedará fijo al conectarse con éxito.
+3. **Sincronización de Hardware:** Enciende el robot desde el switch principal. El LED azul interno de la placa (`GPIO 2`) parpadeará mientras establece el enlace de red y se quedará fijo al conectarse con éxito.
 4. **Despliegue de Control:** Si usas iOS, abre el navegador Safari e ingresa a la IP asignada (usualmente `172.20.10.2` o `172.20.10.3`) para acceder al tablero de control industrial.
 
 <br>
@@ -73,5 +79,5 @@
 ---
 <div align="center">
   <b>Desarrollado por:</b> Samuel Elí Villanueva Chávez <br>
-  <i>Tecnología, Informática y Telecomunicaciones (UNDAC) | Sam
+  <i>Tecnología, Informática y Telecomunicaciones (UNDAC) | Sam </i>
 </div>
